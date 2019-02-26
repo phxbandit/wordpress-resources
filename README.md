@@ -1,1 +1,1 @@
-# wordpress-resources
+# WordPress Resources
