@@ -1,19 +1,7 @@
 #!/bin/bash
 
 # wpmd5.sh - Compares wordpress.org md5s to installed wp md5s
-# phxbadit
-
-# Process zips
-# #!/bin/bash
-#
-# # convert-zips.sh
-#
-# for i in *.zip; do
-#     ver=$(echo "$i" | awk -F"-" '{print $2}' | sed -e 's/\.zip$//')
-#     unzip "$i"
-#     mv wordpress "$ver"
-#     rm "$i"
-# done
+# phxbandit
 
 # Generate MD5s
 # #!/bin/bash
