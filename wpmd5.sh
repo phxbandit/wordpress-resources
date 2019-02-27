@@ -3,17 +3,6 @@
 # wpmd5.sh - Compares wordpress.org md5s to installed wp md5s
 # phxbandit
 
-# Generate MD5s
-# #!/bin/bash
-#
-# # ./create-md5s.sh | tee wordpress-md5s
-#
-# for i in $(ls); do
-#     if [[ ! "$i" =~ "convert-zips.sh" ]] && [[ ! "$i" =~ "create-md5s.sh" ]] && [[ ! "$i" =~ "wordpress-md5s" ]]; then
-#         find "$i" -type f -not -path "*wp-content*" | xargs md5sum
-#     fi
-# done
-
 IFS=$'\n'
 
 # Help
