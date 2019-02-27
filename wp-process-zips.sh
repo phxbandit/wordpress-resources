@@ -20,7 +20,7 @@ download() {
         txt="$HOME/$urls"
     else
         txt="$urls"
-        wget -q https://raw.githubusercontent.com/phxbandit/wordpress-resources/master/wordpress-release-urls.txt
+        wget -q "https://raw.githubusercontent.com/phxbandit/wordpress-resources/master/$urls"
     fi
 
     for i in $(cat "$txt"); do
