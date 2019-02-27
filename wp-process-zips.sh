@@ -12,7 +12,7 @@ help() {
 }
 
 download() {
-    urls='wp-release-urls.txt'
+    urls='wordpress-release-urls.txt'
 
     if [ -f "$urls" ]; then
         txt="$urls"
@@ -20,7 +20,7 @@ download() {
         txt="$HOME/$urls"
     else
         txt="$urls"
-        wget -q https://raw.githubusercontent.com/phxbandit/wordpress-resources/master/wp-release-urls.txt
+        wget -q https://raw.githubusercontent.com/phxbandit/wordpress-resources/master/wordpress-release-urls.txt
     fi
 
     for i in $(cat "$txt"); do
