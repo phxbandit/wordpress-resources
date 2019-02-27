@@ -1,14 +1,14 @@
 #!/bin/bash
-# process-wp-zips.sh
+# wp-process-zips.sh
 # phxbandit
 
 help() {
-    echo "process-wp-zips.sh - Downloads and processes WordPress zips for wpmd5.sh"
-    echo "Usage: ./process-wp-zips.sh [-d|-h|-p]"
+    echo "wp-process-zips.sh - Downloads and processes WordPress zips for wpmd5.sh"
+    echo "Usage: ./wp-process-zips.sh [-a|-d|-h|-p]"
+    echo "  -a = All, download and process"
     echo "  -d = Download zips only"
     echo "  -h = This help"
     echo "  -p = Process zips only"
-    exit 1
 }
 
 download() {
@@ -50,17 +50,25 @@ process() {
     done
 }
 
-if [ $# -gt 1 ]; then
+if [ $# -ne 1 ]; then
     help
+    exit 1
 fi
 
-if [ "$1" = '-h' ]; then
-    help
-elif [ "$1" = '-d' ]; then
-    download
-elif [ "$1" = '-p' ]; then
-    process
-else
-    download
-    process
-fi
+while getopts :adhp opt; do
+    case $opt in
+        a) download
+           process
+        ;;
+        d) download
+        ;;
+        h) help
+           exit 0
+        ;;
+        p) process
+        ;;
+        \?) help
+            exit 1
+        ;;
+    esac
+done
