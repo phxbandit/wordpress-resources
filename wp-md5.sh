@@ -1,14 +1,12 @@
 #!/bin/bash
-
-# wpmd5.sh - Compares wordpress.org md5s to installed wp md5s
+# wp-md5.sh - Compares wordpress.org md5s to installed wp md5s
 # phxbandit
 
 IFS=$'\n'
 
-# Help
-usage() {
+help() {
     echo
-    echo "Usage: ./wpmd5.sh [-v] /absolute/path/to/wordpress"
+    echo "Usage: ./wp-md5.sh [-v] /absolute/path/to/wordpress"
     echo "   -v: Verbose output"
     echo
     exit 1
@@ -17,7 +15,7 @@ usage() {
 # Handle arguments
 if [ $# -ne 1 ]; then
     if [ $# -ne 2 ]; then
-        usage
+        help
     fi
 fi
 
@@ -41,7 +39,7 @@ fi
 
 # Verify wp exists
 wp_path=$(echo $wp_path_tmp | sed -e 's#/$##')
-[ -f "$wp_path/wp-config.php" ] || usage
+[ -f "$wp_path/wp-config.php" ] || help
 
 # Find wp version
 if [ -f "$wp_path/wp-includes/version.php" ]; then

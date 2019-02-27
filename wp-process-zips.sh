@@ -3,7 +3,7 @@
 # phxbandit
 
 help() {
-    echo "wp-process-zips.sh - Downloads and processes WordPress zips for wpmd5.sh"
+    echo "wp-process-zips.sh - Downloads and processes WordPress zips for wp-md5.sh"
     echo "Usage: ./wp-process-zips.sh [-a|-d|-h|-p]"
     echo "  -a = All, download and process"
     echo "  -d = Download zips only"
