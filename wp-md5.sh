@@ -1,5 +1,5 @@
 #!/bin/bash
-# wp-md5.sh - Compares wordpress.org md5s to installed wp md5s
+# wp-md5.sh - Compares wordpress.org MD5s to installed wp MD5s
 # phxbandit
 
 IFS=$'\n'
