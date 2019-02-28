@@ -47,10 +47,11 @@ process() {
     for j in *.zip; do
         dir=$(unzip -l "$j" | head -4 | tail -1 | awk '{print $4}' | sed -e 's/\/$//')
         ver=$(echo -n "$j" | sed -e 's/wordpress-//' | sed -e 's/\.zip$//')
-        echo "Processing $j..."
+        echo "Extracting $j..."
         unzip -q "$j" && mv "$dir" "$ver" && rm "$j"
     done
 
+    echo "Generating MD5s..."
     for k in $(ls); do
         if [[ ! "$k" =~ 'wp-process-zips.sh' ]] && [[ ! "$k" =~ 'wordpress-release-urls.txt' ]] && [[ ! "$k" =~ "$wpmd5s" ]]; then
             find "$k" -type f -not -path "*wp-content*" | xargs md5sum >> "$wpmd5s"
@@ -80,3 +81,5 @@ while getopts :adhp opt; do
         ;;
     esac
 done
+
+echo "Done"
