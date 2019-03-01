@@ -24,7 +24,7 @@ find_wp_version() {
     elif [ -f "$wp_path/readme.html" ]; then
         installed_ver=$(grep 'Version ' "$wp_path/readme.html" | awk '{print $4}')
     else
-        echo "ERROR: WordPress version unavailable"
+        echo "ERROR: WordPress version not found"
         exiting
     fi
     echo "Found WordPress version $installed_ver at $wp_path"
