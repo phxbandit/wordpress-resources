@@ -107,7 +107,7 @@ main() {
     compare_md5s
 }
 
-######################
+#########################################
 
 # Handle prereqs
 if [ "$(which unzip)" = '' ]; then
