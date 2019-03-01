@@ -1,5 +1,5 @@
 #!/bin/bash
-# wp-md5.sh - Verifies integrity of installed core WordPress files
+# wp-md5.sh - Verifies integrity of installed WordPress core files
 # phxbandit
 
 IFS=$'\n'
@@ -10,7 +10,7 @@ exiting() {
 }
 
 help() {
-    echo "wp-md5.sh - Verifies integrity of installed core WordPress files"
+    echo "wp-md5.sh - Verifies integrity of installed WordPress core files"
     echo "Usage: ./wp-md5.sh [-h|-v] /absolute/path/to/wordpress"
     echo "  -h = This help"
     echo "  -v = Verbose output"
