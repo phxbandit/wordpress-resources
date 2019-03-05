@@ -103,6 +103,8 @@ main() {
     download
     gen_md5s
     compare_md5s
+
+    echo "Done"
 }
 
 #########################
@@ -115,5 +117,3 @@ if [ $# -ne 1 ]; then
 fi
 
 main "$@"
-
-echo "Done"
