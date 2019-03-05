@@ -31,7 +31,7 @@ find_wp_version() {
 }
 
 download() {
-    txt='wordpress-release-urls.txt'
+    txt='wordpress-tar-releases.txt'
 
     if [ ! -f "$txt" ]; then
         echo "Downloading WordPress release URLs..."
@@ -40,16 +40,16 @@ download() {
 
     line=$(grep "wordpress-$installed_ver" "$txt")
     url=$(echo -n "$line" | awk -F',' '{print $1}')
-    zip=$(echo -n "$url" | awk -F'/' '{print $4}')
+    tgz=$(echo -n "$url" | awk -F'/' '{print $4}')
     md5=$(echo -n "$line" | awk -F',' '{print $2}')
 
-    echo "Downloading $zip..."
+    echo "Downloading $tgz..."
     wget -q -c "$url"
-    sum=$(md5sum "$zip" | awk '{print $1}')
+    sum=$(md5sum "$tgz" | awk '{print $1}')
 
     if [ "$sum" != "$md5" ]; then
-        echo "ERROR: MD5 of $zip does not match"
-        echo "Zip: $sum"
+        echo "ERROR: MD5 of $tgz does not match"
+        echo "Tar: $sum"
         echo "MD5: $md5"
         exiting
     fi
@@ -58,10 +58,8 @@ download() {
 gen_md5s() {
     wpmd5s="wordpress-${installed_ver}-md5s"
 
-    echo "Extracting $zip..."
-    dir=$(unzip -l "$zip" | head -4 | tail -1 | awk '{print $4}' | sed -e 's#/$##')
-    unzip -q "$zip" && mv "$dir" "$installed_ver"
-    #rm "$zip"
+    echo "Extracting $tgz..."
+    tar xzf "$tgz" && mv wordpress "$installed_ver" #&& rm "$tgz"
 
     echo "Generating reference MD5s..."
     find "$installed_ver" -type f -not -path "*wp-content*" | xargs md5sum >> "$wpmd5s"
@@ -108,12 +106,6 @@ main() {
 }
 
 #########################################
-
-# Handle prereqs
-if [ "$(which unzip)" = '' ]; then
-    echo "ERROR: unzip command not found"
-    exiting
-fi
 
 if [ $# -ne 1 ]; then
     if [ $# -ne 2 ]; then
