@@ -1,3 +1,4 @@
+https://wordpress.org/wordpress-5.1.1.zip,ad6d229c6e485d084c77348d008f0612
 https://wordpress.org/wordpress-5.1.zip,a54dd20a2ed3eec9b4fc806e350615ae
 https://wordpress.org/wordpress-5.0.3.zip,69c9f3c14148eca3fd804f658a565eb7
 https://wordpress.org/wordpress-5.0.2.zip,0f49ffa620ff4d93aaef9f5ef477b6e6
