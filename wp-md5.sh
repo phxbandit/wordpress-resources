@@ -21,8 +21,8 @@ find_wp_version() {
 
     if [ -f "$wp_path/wp-includes/version.php" ]; then
         installed_ver=$(grep '$wp_version =' "$wp_path/wp-includes/version.php" | awk -F"= '" '{print $2}' | sed -e "s/';$//")
-    elif [ -f "$wp_path/readme.html" ]; then
-        installed_ver=$(grep 'Version ' "$wp_path/readme.html" | awk '{print $4}')
+    elif [ -f "$wp_path/wp-admin/about.php" ]; then
+        installed_ver=$(grep -F 'sanitize_title(' "$wp_path/wp-admin/about.php" | awk -F"'" '{print $2}')
     else
         echo "ERROR: WordPress version not found"
         exiting
@@ -31,17 +31,9 @@ find_wp_version() {
 }
 
 download() {
-    txt='wordpress-tar-releases.txt'
-
-    if [ ! -f "$txt" ]; then
-        echo "Downloading WordPress release URLs..."
-        wget -q -c "https://raw.githubusercontent.com/phxbandit/wordpress-resources/master/$txt"
-    fi
-
-    line=$(grep "wordpress-$installed_ver" "$txt")
-    url=$(echo -n "$line" | awk -F',' '{print $1}')
-    tgz=$(echo -n "$url" | awk -F'/' '{print $4}')
-    md5=$(echo -n "$line" | awk -F',' '{print $2}')
+    tgz="wordpress-$installed_ver.tar.gz"
+    url="https://wordpress.org/$tgz"
+    md5=$(wget -qO- "$url.md5")
 
     echo "Downloading $tgz..."
     wget -q -c "$url"
@@ -58,14 +50,14 @@ download() {
 gen_md5s() {
     wpmd5s="wordpress-${installed_ver}-md5s"
 
-    echo "Extracting $tgz..."
-    tar xzf "$tgz" && mv wordpress "$installed_ver" #&& rm "$tgz"
-
     echo "Generating reference MD5s..."
+    tar xzf "$tgz" && mv wordpress "$installed_ver" #&& rm "$tgz"
     find "$installed_ver" -type f -not -path "*wp-content*" | xargs md5sum >> "$wpmd5s"
 }
 
 compare_md5s() {
+    echo "Comparing MD5s..."
+
     for i in $(grep " $installed_ver/" "$wpmd5s"); do
         master_md5=$(echo "$i" | awk '{print $1}')
         master_file=$(echo "$i" | awk '{print $2}' | sed -e "s#^$installed_ver/##")
