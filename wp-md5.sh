@@ -71,7 +71,7 @@ compare_md5s() {
         if [ "$master_md5" != "$installed_md5" ]; then
             echo
             echo "ALERT: MD5s for $master_file do not match"
-            echo "Reference file:    $master_md5"
+            echo "Reference file: $master_md5"
             echo "Installed file: $installed_md5"
             echo
         fi
