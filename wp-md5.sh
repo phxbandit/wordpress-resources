@@ -42,7 +42,7 @@ api_call() {
     fi
 }
 
-compare_md5s() {
+compare_hashes() {
     echo "Comparing hashes..."
 
     for i in $(grep -v '{' "$tmp_json" | grep -v '}'); do
@@ -80,7 +80,7 @@ main() {
 
     find_wp_version "$abs_path"
     api_call
-    compare_md5s
+    compare_hashes
 
     echo "Done"
 }
