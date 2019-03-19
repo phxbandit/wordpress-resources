@@ -30,49 +30,36 @@ find_wp_version() {
     echo "Found WordPress version $installed_ver at $wp_path"
 }
 
-download() {
-    tgz="wordpress-$installed_ver.tar.gz"
-    url="https://wordpress.org/$tgz"
-    md5=$(wget -qO- "$url.md5")
+api_call() {
+    tmp_json="/tmp/wp-$installed_ver-checksums"
 
-    echo "Downloading $tgz..."
-    wget -q -c "$url"
-    sum=$(md5sum "$tgz" | awk '{print $1}')
+    echo "Downloading reference checksums..."
 
-    if [ "$sum" != "$md5" ]; then
-        echo "ERROR: MD5 of $tgz does not match"
-        echo "Tar: $sum"
-        echo "MD5: $md5"
-        exiting
+    if [[ "$(which python3)" =~ 'python3' ]]; then
+        wget -qO- --user-agent='wp-md5.sh' "https://api.wordpress.org/core/checksums/1.0/?version=$installed_ver&locale=en_US" | python3 -m json.tool > "$tmp_json"
+    else
+        wget -qO- --user-agent='wp-md5.sh' "https://api.wordpress.org/core/checksums/1.0/?version=$installed_ver&locale=en_US" | python -m json.tool > "$tmp_json"
     fi
 }
 
-gen_md5s() {
-    wpmd5s="wordpress-${installed_ver}-md5s"
-
-    echo "Generating reference MD5s..."
-    tar xzf "$tgz" && mv wordpress "$installed_ver" #&& rm "$tgz"
-    find "$installed_ver" -type f -not -path "*wp-content*" | xargs md5sum >> "$wpmd5s"
-}
-
 compare_md5s() {
-    echo "Comparing MD5s..."
+    echo "Comparing hashes..."
 
-    for i in $(grep " $installed_ver/" "$wpmd5s"); do
-        master_md5=$(echo "$i" | awk '{print $1}')
-        master_file=$(echo "$i" | awk '{print $2}' | sed -e "s#^$installed_ver/##")
+    for i in $(grep -v '{' "$tmp_json" | grep -v '}'); do
+        master_file=$(echo -n "$i" | awk -F'"' '{print $2}')
+        master_md5=$(echo -n "$i" | awk -F'"' '{print $4}')
 
         if [ "$verbose" -eq 1 ]; then
             echo "Checking $wp_path/$master_file..."
         fi
 
-        installed_md5=$(md5sum "$wp_path/$master_file" | awk '{print $1}')
+        installed_md5=$(md5sum "$wp_path/$master_file" 2>/dev/null | awk '{print $1}')
 
         if [ "$master_md5" != "$installed_md5" ]; then
             echo
             echo "ALERT: MD5s for $master_file do not match"
-            echo "Reference file: $master_md5"
-            echo "Installed file: $installed_md5"
+            echo "Reference file : $master_md5"
+            echo "Installed file : $installed_md5"
             echo
         fi
     done
@@ -92,8 +79,7 @@ main() {
     fi
 
     find_wp_version "$abs_path"
-    download
-    gen_md5s
+    api_call
     compare_md5s
 
     echo "Done"
