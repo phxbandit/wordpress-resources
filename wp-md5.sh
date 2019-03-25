@@ -90,7 +90,7 @@ compare_hashes() {
             echo "Installed file : $installed_md5"
             echo
             echo "********************************************************************************"
-            echo -e "\nDiff of $reference_file\n"
+            echo -e "\nDiff of reference $reference_file vs. installed version\n"
             diff "/tmp/$installed_ver/$reference_file" "$wp_path/$reference_file" 2>/dev/null
             echo
             echo "********************************************************************************"
