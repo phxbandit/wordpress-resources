@@ -35,10 +35,9 @@ api_call() {
 
     echo "Downloading reference checksums..."
 
+    py_ver=''
     if [[ "$(which python3)" =~ 'python3' ]]; then
         py_ver='3'
-    else
-        py_ver=''
     fi
 
     wget -qO- --user-agent='wp-md5.sh' "https://api.wordpress.org/core/checksums/1.0/?version=$installed_ver&locale=en_US" | "python${py_ver}" -m json.tool > "$tmp_json"
