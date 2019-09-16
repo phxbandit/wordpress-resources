@@ -1,3 +1,8 @@
+https://wordpress.org/wordpress-5.2.3.tar.gz,bde83b629bc7a833f7000bc522cde120
+https://wordpress.org/wordpress-5.2.2.tar.gz,aea5bb5e4fd51034f67c85e6d8bc6bbf
+https://wordpress.org/wordpress-5.2.1.tar.gz,aa13bf5f99e05fe8ab24940b382f2e3f
+https://wordpress.org/wordpress-5.2.tar.gz,a45a23290f24ac7779e38a2bc8655344
+https://wordpress.org/wordpress-5.1.2.tar.gz,03e8043c53a28e2a7bc5ce67375184c8
 https://wordpress.org/wordpress-5.1.1.tar.gz,e878b33b520f61e61f2caa0f08886c1b
 https://wordpress.org/wordpress-5.1.tar.gz,05626e3bd6aa8b13c90b55ba469c7c4d
 https://wordpress.org/wordpress-5.0.3.tar.gz,83bec78836aabac08f769d50f1bffe5d

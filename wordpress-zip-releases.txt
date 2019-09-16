@@ -1,3 +1,8 @@
+https://wordpress.org/wordpress-5.2.3.zip,e6b0b99ba19038e94bfe9682c899aeaf
+https://wordpress.org/wordpress-5.2.2.zip,407c5ed266f0df360896c37865e08eab
+https://wordpress.org/wordpress-5.2.1.zip,407c5ed266f0df360896c37865e08eab
+https://wordpress.org/wordpress-5.2.zip,8bf377f502a8d8749eb253a51bd86808
+https://wordpress.org/wordpress-5.1.2.zip,3e1ac9a60698f23d2e0bc58ca79132fd
 https://wordpress.org/wordpress-5.1.1.zip,ad6d229c6e485d084c77348d008f0612
 https://wordpress.org/wordpress-5.1.zip,a54dd20a2ed3eec9b4fc806e350615ae
 https://wordpress.org/wordpress-5.0.3.zip,69c9f3c14148eca3fd804f658a565eb7
