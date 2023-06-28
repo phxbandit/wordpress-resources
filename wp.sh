@@ -13,7 +13,7 @@ if [ -f "$verphp" ]; then
     echo -e "\nFound wp version $ver\n"
     read -p "Continue replacing wp $ver? (y/n) " ans
     if [ "$ans" != 'y' ]; then
-        echo "Exiting"
+        echo -e "\nExiting\n"
         exit
     fi
 else
