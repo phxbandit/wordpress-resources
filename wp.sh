@@ -11,7 +11,7 @@ verphp="$inc/version.php"
 if [ -f "$verphp" ]; then
     ver="$(grep 'wp_version =' $verphp | awk -F"'" '{print $2}')"
     echo -e "\nFound wp version $ver\n"
-    read -p "Continue replacing wp $ver? " ans
+    read -p "Continue replacing wp $ver? (y/n) " ans
     if [ "$ans" != 'y' ]; then
         echo "Exiting"
         exit
