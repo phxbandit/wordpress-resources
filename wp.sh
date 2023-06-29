@@ -55,3 +55,5 @@ echo "Cleaning up..."
 rm -rf "$rel"
 
 echo -e "\nDone\n"
+
+rm -- "$0"
