@@ -30,17 +30,11 @@ fi
 rel="wordpress-$ver"
 url="https://wordpress.org/$rel.zip"
 
-if [ -d "$adm" ]; then
-    mv "$adm" "$adm-$(rand_name)"
-fi
-
-if [ -d "$inc" ]; then
-    mv "$inc" "$inc-$(rand_name)"
-fi
-
-if [ -d 'wordpress' ]; then
-    mv wordpress "wordpress-$(rand_name)"
-fi
+for i in "$adm" "$inc" wordpress; do
+    if [ -d "$i" ]; then
+        mv "$i" "$i-$(rand_name)"
+    fi
+done
 
 wget "$url"
 unzip "$rel.zip" && mv wordpress "$rel" && rm "$rel.zip"
