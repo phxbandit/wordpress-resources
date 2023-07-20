@@ -57,7 +57,7 @@ if [ -f "$ind" ]; then
         cp -f "$rel"/*.php .
     else
         echo -e "\nExiting\n"
-        exit
+        exit 1
     fi
 else
     echo "Restoring php files..."
