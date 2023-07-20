@@ -20,7 +20,7 @@ if [ -f "$ver_php" ]; then
     read -p "Continue replacing wp $ver? (y/n) " ans1
     if [ "$ans1" != 'y' ]; then
         echo -e "\nExiting\n"
-        exit
+        exit 1
     fi
 else
     echo -e "\n$ver_php not found\n"
