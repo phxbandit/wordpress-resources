@@ -47,9 +47,8 @@ mv "$rel/$inc" "$inc"
 
 # Verify user wants to write index.php and other wp php files
 if [ -f "$ind" ]; then
-    lslh=$(ls -lh "$ind")
     echo -e "\n$ind detected:"
-    echo -e "$lslh\n"
+    ls -lh "$ind"
     read -p "Continue replacing $ind and php files? (y/n) " ans2
     if [ "$ans2" == 'y' ]; then
         echo -e "\nRestoring php files..."
