@@ -49,6 +49,7 @@ mv "$rel/$inc" "$inc"
 if [ -f "$ind" ]; then
     echo -e "\n$ind detected:"
     ls -lh "$ind"
+    echo
     read -p "Continue replacing $ind and php files? (y/n) " ans2
     if [ "$ans2" == 'y' ]; then
         echo -e "\nRestoring php files..."
