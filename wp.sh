@@ -2,7 +2,7 @@
 
 # wp.sh - Replaces wp core files
 
-function rand_name {
+rand_name() {
     local dis_name="disabled-${RANDOM}"
     echo "$dis_name"
 }
