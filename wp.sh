@@ -7,6 +7,39 @@ rand_name() {
     echo "$dis_name"
 }
 
+htacheck() {
+    hta='.htaccess'
+
+    if [ -f "$hta" ]; then
+        htperms=$(stat -c "%a" "$hta")
+
+        if [[ "$htperms" -eq '000' || "$htperms" -eq '444' ]]; then
+            echo -e "\n$hta perms suck:"
+            ls -l "$hta"
+            echo -e "\nChmodding .htaccess...\n"
+            chmod 644 "$hta"
+        fi
+    fi
+
+    if [[ ! -f "$hta" || ! -s "$hta" ]]; then
+        echo -e "\nRestoring .htaccess...\n"
+        # https://wordpress.org/documentation/article/htaccess/
+        cat << EOF > "$hta"
+# BEGIN WordPress
+
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+
+# END WordPress
+EOF
+    fi
+}
+
 # Define
 adm='wp-admin'
 inc='wp-includes'
@@ -63,6 +96,8 @@ else
     echo "Restoring php files..."
     cp -f "$rel"/*.php .
 fi
+
+htacheck
 
 echo "Cleaning up..."
 rm -rf "$rel"
