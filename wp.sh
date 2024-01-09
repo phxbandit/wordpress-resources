@@ -21,7 +21,7 @@ htacheck() {
         fi
     fi
 
-    if [[ ! -f "$hta" || ! -s "$hta" ]]; then
+    if [[ ! -e "$hta" || ! -s "$hta" ]]; then
         echo -e "\nRestoring .htaccess...\n"
         # https://wordpress.org/documentation/article/htaccess/
         cat << EOF > "$hta"
