@@ -23,7 +23,7 @@ htacheck() {
 
     if [[ ! -e "$hta" || ! -s "$hta" ]]; then
         echo -e "\nRestoring .htaccess...\n"
-        # https://wordpress.org/documentation/article/htaccess/
+        # https://developer.wordpress.org/advanced-administration/server/web-server/httpd/
         cat << EOF > "$hta"
 # BEGIN WordPress
 
