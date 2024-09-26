@@ -27,3 +27,5 @@ define('FTP_HOST', 'host.or.ip.address');
 define('FTP_USER', 'user');
 define('FTP_PASS', 'password');
 define('FTP_BASE', '/path/to/wordpress/');
+
+UPDATE `wp_posts` SET `post_status` = 'trash' WHERE `post_status` = 'publish' AND `post_type` = 'post';
