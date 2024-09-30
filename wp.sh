@@ -56,7 +56,7 @@ if [[ -f "$ver_php" && -s "$ver_php" ]]; then
         exit 1
     fi
 else
-    echo -e "\n$ver_php not found\n"
+    echo -e "\n$ver_php not found or empty\n"
     read -p "Enter wp version to install: " ver
 fi
 
