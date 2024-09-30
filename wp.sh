@@ -47,7 +47,7 @@ ind='index.php'
 ver_php="$inc/version.php"
 
 # Check for existing wp
-if [ -f "$ver_php" ]; then
+if [[ -f "$ver_php" && -s "$ver_php" ]]; then
     ver="$(grep 'wp_version =' $ver_php | awk -F"'" '{print $2}')"
     echo -e "\nFound wp version $ver\n"
     read -p "Continue replacing wp $ver? (y/n) " ans1
