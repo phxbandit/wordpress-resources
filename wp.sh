@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# wp.sh - Replaces wp core files
+# wp.sh - Replaces core WordPress files
 
 rand_name() {
     local dis_name="disabled-${RANDOM}"
