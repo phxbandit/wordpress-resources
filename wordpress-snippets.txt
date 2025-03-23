@@ -1,19 +1,12 @@
 // Move spam posts to the Trash
 UPDATE `wp_posts` SET `post_status` = 'trash' WHERE `post_status` = 'publish' AND `post_type` = 'post';
 
-// wp-config.php FTPS config options
-define('FS_METHOD', 'direct');
-define('FTP_SSL', true);
-define('FTP_HOST', 'host.or.ip.address');
-define('FTP_USER', 'user');
-define('FTP_PASS', 'password');
-define('FTP_BASE', '/path/to/wordpress/');
+// Add debug logging to wp-config.php
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_LOG', true );
+define( 'WP_DEBUG_DISPLAY', false );
 
-/**
- * <theme>/functions.php
- * Hook to hide uncategorized, tag ID 1, posts.
- **/
-add_action('pre_get_posts', 'hide_uncategorized' );
-function hide_uncategorized( $wp_query ) {
-    set_query_var('category__not_in', '1');
-}
+//Add to wp-config.php to turn off errors if WP_DEBUG false doesn't work
+ini_set('display_errors','Off');
+ini_set('error_reporting', E_ALL );
+define('WP_DEBUG_DISPLAY', false);
