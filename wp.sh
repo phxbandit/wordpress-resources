@@ -10,7 +10,7 @@ rand_name() {
 htacheck() {
     hta='.htaccess'
 
-    if [ -f "$hta" ]; then
+    if [[ -f "$hta" ]]; then
         htperms=$(stat -c "%a" "$hta")
 
         if [[ "$htperms" -eq '000' || "$htperms" -eq '444' ]]; then
@@ -51,7 +51,7 @@ if [[ -f "$ver_php" && -s "$ver_php" ]]; then
     ver="$(grep 'wp_version =' $ver_php | awk -F"'" '{print $2}')"
     echo -e "\nFound wp version $ver\n"
     read -p "Continue replacing wp $ver? (y/n) " ans1
-    if [ "$ans1" != 'y' ]; then
+    if [[ "$ans1" != 'y' ]]; then
         echo -e "\nExiting\n"
         exit 1
     fi
@@ -64,7 +64,7 @@ rel="wordpress-$ver"
 url="https://wordpress.org/$rel.zip"
 
 for i in "$adm" "$inc" wordpress; do
-    if [ -d "$i" ]; then
+    if [[ -d "$i" ]]; then
         mv "$i" "$i-$(rand_name)"
     fi
 done
