@@ -1,7 +1,7 @@
 #!/bin/bash
 # wparkive.sh
 
-if [ $# -ne 1 ]; then
+if [[ $# -ne 1 ]]; then
     echo "Use: wparkive <x.x.x>"
     exit
 fi
@@ -11,7 +11,7 @@ rel="wordpress-$ver"
 url="https://wordpress.org/$rel.zip"
 ark="$HOME/releases-wp"
 
-if [ -d "$ark/$rel" ]; then
+if [[ -d "$ark/$rel" ]]; then
     echo "release exists"
     exit
 fi
