@@ -79,12 +79,12 @@ echo "Restoring wp-includes..."
 mv "$rel/$inc" "$inc"
 
 # Verify user wants to write index.php and other wp php files
-if [ -f "$ind" ]; then
+if [[ -f "$ind" ]]; then
     echo -e "\n$ind detected:"
     ls -lh "$ind"
     echo
     read -p "Continue replacing $ind and php files? (y/n) " ans2
-    if [ "$ans2" == 'y' ]; then
+    if [[ "$ans2" == 'y' ]]; then
         echo -e "\nRestoring php files..."
         mv "$ind" "$ind-$(rand_name)"
         cp -f "$rel"/*.php .
