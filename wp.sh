@@ -49,7 +49,7 @@ ver_php="$inc/version.php"
 # Check for existing wp
 if [[ -f "$ver_php" && -s "$ver_php" ]]; then
     ver="$(grep 'wp_version =' $ver_php | awk -F"'" '{print $2}')"
-    echo -e "\nFound wp version $ver\n"
+    echo -e "\nFound WordPress version $ver\n"
     read -p "Continue replacing wp $ver? (y/n) " ans1
     if [[ "$ans1" != 'y' ]]; then
         echo -e "\nExiting\n"
@@ -57,7 +57,7 @@ if [[ -f "$ver_php" && -s "$ver_php" ]]; then
     fi
 else
     echo -e "\n$ver_php not found or empty\n"
-    read -p "Enter wp version to install: " ver
+    read -p "Enter WordPress version to install: " ver
 fi
 
 rel="wordpress-$ver"
