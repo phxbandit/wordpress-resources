@@ -6,3 +6,4 @@
 - wp-md5.sh -- Verifies integrity of core WordPress files
 - wp.sh - Replaces core WordPress files
 - wparkive.sh - Downloads a given WordPress release
+- wpdb.php - Shows database connection info
