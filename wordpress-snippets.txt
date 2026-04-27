@@ -1,6 +1,3 @@
-// Move spam posts to the Trash
-UPDATE `wp_posts` SET `post_status` = 'trash' WHERE `post_status` = 'publish' AND `post_type` = 'post';
-
 // Add to wp-config.php to add debug logging to wp-content
 define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_LOG', true );
