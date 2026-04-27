@@ -1,0 +1,8 @@
+UPDATE `wp_posts` SET `post_status` = 'trash' WHERE `post_status` = 'publish' AND `post_type` = 'post';
+
+UPDATE `wp_posts` SET `post_status` = 'trash' WHERE `post_status` = 'publish' AND `post_type` = 'post' AND `post_date` > '2020/07/01’;
+
+DROP TRIGGER IF EXISTS after_insert_comment;
+
+DELETE FROM wp_users WHERE ID = [suspicious_user_id];
+DELETE FROM wp_usermeta WHERE user_id = [suspicious_user_id];
