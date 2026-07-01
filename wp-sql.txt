@@ -6,7 +6,7 @@ SELECT ID, post_title, post_type, post_status
 FROM wp_posts
 WHERE post_content LIKE '%4568px%';
 
-UPDATE wp_xvj7akdknq_postmeta
+UPDATE wp_postmeta
 SET meta_value = REPLACE(
     meta_value,
     '<div style=\\"position: absolute; left: -9966px;\\"><p><a href=\\"https:\\\/\\\/www\.example\.com\\\/\\">pin up<\\\/a> Kazino r\\u0259smi sayt\\u0131<\\\/p><\\\/div>',
